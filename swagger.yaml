@@ -1,0 +1,3451 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: SwaggerIntegrationDemo.WebApi
+host: umesseat.com
+schemes:
+  - http
+paths:
+  /api/AbpCache/Clear:
+    post:
+      tags:
+        - AbpCache
+      operationId: AbpCache_Clear
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: model
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ClearCacheModel'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AjaxResponse'
+  /api/AbpCache/ClearAll:
+    post:
+      tags:
+        - AbpCache
+      operationId: AbpCache_ClearAll
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: model
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ClearAllCacheModel'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AjaxResponse'
+  /api/AbpServiceProxies:
+    get:
+      tags:
+        - AbpServiceProxies
+      operationId: AbpServiceProxies_Get
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: name
+          in: query
+          required: true
+          type: string
+        - name: type
+          in: query
+          required: false
+          type: integer
+          format: int32
+          enum:
+            - 0
+            - 1
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+  /api/Account:
+    post:
+      tags:
+        - Account
+      operationId: Account_Authenticate
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: loginModel
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LoginModel'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AjaxResponse'
+  /api/services/app/account/IsTenantAvailable:
+    post:
+      tags:
+        - app_account
+      operationId: app_account_IsTenantAvailable
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/IsTenantAvailableInput'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IsTenantAvailableOutput'
+  /api/services/app/account/Register:
+    post:
+      tags:
+        - app_account
+      operationId: app_account_Register
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/RegisterInput'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RegisterOutput'
+  /api/services/app/configuration/ChangeUiTheme:
+    post:
+      tags:
+        - app_configuration
+      operationId: app_configuration_ChangeUiTheme
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ChangeUiThemeInput'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/departmentService/GetAllByCodeOrName:
+    post:
+      tags:
+        - app_departmentService
+      operationId: app_departmentService_GetAllByCodeOrName
+      consumes: []
+      produces: []
+      parameters:
+        - name: codeOrName
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DepartmentDto'
+  /api/services/app/lineService/GetAllBy:
+    post:
+      tags:
+        - app_lineService
+      operationId: app_lineService_GetAllBy
+      consumes: []
+      produces: []
+      parameters:
+        - name: userName
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LineDto'
+  /api/services/app/lineService/GetById:
+    post:
+      tags:
+        - app_lineService
+      operationId: app_lineService_GetById
+      consumes: []
+      produces: []
+      parameters:
+        - name: lineId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LineDto'
+  /api/services/app/lossDefinitionService/GetAll:
+    post:
+      tags:
+        - app_lossDefinitionService
+      operationId: app_lossDefinitionService_GetAll
+      consumes: []
+      produces: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LossDefinitionDto'
+  /api/services/app/lossDefinitionService/GetByLossCode:
+    post:
+      tags:
+        - app_lossDefinitionService
+      operationId: app_lossDefinitionService_GetByLossCode
+      consumes: []
+      produces: []
+      parameters:
+        - name: lossCoed
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LossDefinitionDto'
+  /api/services/app/lossProcessService/Add:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_Add
+      consumes: []
+      produces: []
+      parameters:
+        - name: lossProcessDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LossProcessDto'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/lossProcessService/GetLossProcessTimes:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_GetLossProcessTimes
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            format: double
+            type: number
+  /api/services/app/lossProcessService/GetAll:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LossProcessDto'
+  /api/services/app/lossProcessService/GetAnalyticalBaseData:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_GetAnalyticalBaseData
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LossProcessAnalyticalDto'
+  /api/services/app/lossProcessService/GetAnalyticalPivotContext:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_GetAnalyticalPivotContext
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PivotContext'
+  /api/services/app/lossProcessService/GetTop5:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_GetTop5
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LossProcessDto'
+  /api/services/app/lossProcessService/SendToErp:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_SendToErp
+      consumes: []
+      produces: []
+      parameters:
+        - name: lossProcessDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LossProcessDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: boolean
+  /api/services/app/lossProcessService/ErpyeGonderildiMiUpdate:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_ErpyeGonderildiMiUpdate
+      consumes: []
+      produces: []
+      parameters:
+        - name: lossProcessDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LossProcessDto'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/lossProcessService/MaintenanceNotificationNumberIsValid:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_MaintenanceNotificationNumberIsValid
+      consumes: []
+      produces: []
+      parameters:
+        - name: maintenanceNotificationNumber
+          in: query
+          required: true
+          type: integer
+          format: int32
+        - name: lossDefinitionDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LossDefinitionDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: boolean
+  /api/services/app/lossProcessService/MaterialNumberIsValid:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_MaterialNumberIsValid
+      consumes: []
+      produces: []
+      parameters:
+        - name: materialNumber
+          in: query
+          required: true
+          type: string
+        - name: lossDefinitionDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LossDefinitionDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: boolean
+  /api/services/app/lossProcessService/DepartmentNumberIsValid:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_DepartmentNumberIsValid
+      consumes: []
+      produces: []
+      parameters:
+        - name: lossProcessDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LossProcessDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: boolean
+  /api/services/app/lossProcessService/GetById:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_GetById
+      consumes: []
+      produces: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LossProcessDto'
+  /api/services/app/lossProcessService/GetAllForDrillDownQuery:
+    post:
+      tags:
+        - app_lossProcessService
+      operationId: app_lossProcessService_GetAllForDrillDownQuery
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/DrillDownQueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LossProcessDto'
+  /api/services/app/mailAddressBookService/GetMailAddressCollection:
+    post:
+      tags:
+        - app_mailAddressBookService
+      operationId: app_mailAddressBookService_GetMailAddressCollection
+      consumes: []
+      produces: []
+      parameters:
+        - name: processType
+          in: query
+          required: true
+          type: string
+        - name: lineId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MailAddress'
+  /api/services/app/maintenanceNoticeService/MaintenanceNotificationNumberIsValid:
+    post:
+      tags:
+        - app_maintenanceNoticeService
+      operationId: app_maintenanceNoticeService_MaintenanceNotificationNumberIsValid
+      consumes: []
+      produces: []
+      parameters:
+        - name: number
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: boolean
+  /api/services/app/matchRecordService/GetAll:
+    post:
+      tags:
+        - app_matchRecordService
+      operationId: app_matchRecordService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MatchRecordDto'
+  /api/services/app/matchRecordService/GetMatchRecordDetailsByMatchRecordId:
+    post:
+      tags:
+        - app_matchRecordService
+      operationId: app_matchRecordService_GetMatchRecordDetailsByMatchRecordId
+      consumes: []
+      produces: []
+      parameters:
+        - name: matchRecordId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MatchRecordDetailDto'
+  /api/services/app/materialService/GetAllByMaterialNumber:
+    post:
+      tags:
+        - app_materialService
+      operationId: app_materialService_GetAllByMaterialNumber
+      consumes: []
+      produces: []
+      parameters:
+        - name: materialNumber
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MaterialDto'
+  /api/services/app/mesClientService/GetMesClientDataDto:
+    post:
+      tags:
+        - app_mesClientService
+      operationId: app_mesClientService_GetMesClientDataDto
+      consumes: []
+      produces: []
+      parameters:
+        - name: workOrderNo
+          in: query
+          required: true
+          type: string
+        - name: hostName
+          in: query
+          required: true
+          type: string
+        - name: personnelNumner
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MesClientDataDto'
+  /api/services/app/operationProcessService/GetByProductionProcessId:
+    post:
+      tags:
+        - app_operationProcessService
+      operationId: app_operationProcessService_GetByProductionProcessId
+      consumes: []
+      produces: []
+      parameters:
+        - name: productionProcessId
+          in: query
+          required: true
+          type: integer
+          format: int32
+        - name: lineId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OperationProcessDto'
+  /api/services/app/operatorService/GetOperatorDtoFromCache:
+    post:
+      tags:
+        - app_operatorService
+      operationId: app_operatorService_GetOperatorDtoFromCache
+      consumes: []
+      produces: []
+      parameters:
+        - name: personnelNumber
+          in: query
+          required: true
+          type: string
+        - name: getsImage
+          in: query
+          required: true
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OperatorDto'
+  /api/services/app/operatorService/GetOperatorDto:
+    post:
+      tags:
+        - app_operatorService
+      operationId: app_operatorService_GetOperatorDto
+      consumes: []
+      produces: []
+      parameters:
+        - name: personnelNumber
+          in: query
+          required: true
+          type: string
+        - name: getsImage
+          in: query
+          required: true
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OperatorDto'
+  /api/services/app/pauseDetailDescriptionService/Add:
+    post:
+      tags:
+        - app_pauseDetailDescriptionService
+      operationId: app_pauseDetailDescriptionService_Add
+      consumes: []
+      produces: []
+      parameters:
+        - name: pauseDetailDescriptionDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PauseDetailDescriptionDto'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/pauseProcessService/Get:
+    post:
+      tags:
+        - app_pauseProcessService
+      operationId: app_pauseProcessService_Get
+      consumes: []
+      produces: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PauseProcessDto'
+  /api/services/app/pauseProcessService/GetAll:
+    post:
+      tags:
+        - app_pauseProcessService
+      operationId: app_pauseProcessService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PauseProcessDto'
+  /api/services/app/pauseProcessService/GetAllAsync:
+    post:
+      tags:
+        - app_pauseProcessService
+      operationId: app_pauseProcessService_GetAllAsync
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PauseProcessDto'
+  /api/services/app/pauseProcessService/UpdateIsSavedAsLoss:
+    post:
+      tags:
+        - app_pauseProcessService
+      operationId: app_pauseProcessService_UpdateIsSavedAsLoss
+      consumes: []
+      produces: []
+      parameters:
+        - name: pauseProcessId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/pauseProcessService/GetPauseProcessDetailsByPauseProcessId:
+    post:
+      tags:
+        - app_pauseProcessService
+      operationId: app_pauseProcessService_GetPauseProcessDetailsByPauseProcessId
+      consumes: []
+      produces: []
+      parameters:
+        - name: pauseProcessId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PauseProcessDetailDto'
+  /api/services/app/pauseService/GetAll:
+    post:
+      tags:
+        - app_pauseService
+      operationId: app_pauseService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PauseDto'
+  /api/services/app/pivotTableService/Localize:
+    post:
+      tags:
+        - app_pivotTableService
+      operationId: app_pivotTableService_Localize
+      consumes: []
+      produces: []
+      parameters:
+        - name: pvtHtmlWr
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PivotTableHtmlWriter'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/productionReportService/GetAll:
+    post:
+      tags:
+        - app_productionReportService
+      operationId: app_productionReportService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductionReportDto'
+  /api/services/app/productionReportService/GetByProductionProcessId:
+    post:
+      tags:
+        - app_productionReportService
+      operationId: app_productionReportService_GetByProductionProcessId
+      consumes: []
+      produces: []
+      parameters:
+        - name: productionProcessId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ProductionReportDto'
+  /api/services/app/productionService/Get:
+    post:
+      tags:
+        - app_productionService
+      operationId: app_productionService_Get
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+        - name: isCurrentShift
+          in: query
+          required: true
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ProductionDto'
+  /api/services/app/productionService/GetHourlyFiguresDtos:
+    post:
+      tags:
+        - app_productionService
+      operationId: app_productionService_GetHourlyFiguresDtos
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/HourlyFiguresDto'
+  /api/services/app/productionService/GetHourlyFiguresDtosFromCache:
+    post:
+      tags:
+        - app_productionService
+      operationId: app_productionService_GetHourlyFiguresDtosFromCache
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/HourlyFiguresDto'
+  /api/services/app/productionService/GetProductionSummaryDto:
+    post:
+      tags:
+        - app_productionService
+      operationId: app_productionService_GetProductionSummaryDto
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ProductionSummaryDto'
+  /api/services/app/productPhotoService/GetAll:
+    post:
+      tags:
+        - app_productPhotoService
+      operationId: app_productPhotoService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: workOrderId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductPhotoDto'
+  /api/services/app/qGateProcessService/GetAllBySeriNo:
+    post:
+      tags:
+        - app_qGateProcessService
+      operationId: app_qGateProcessService_GetAllBySeriNo
+      consumes: []
+      produces: []
+      parameters:
+        - name: seriNo
+          in: query
+          required: true
+          type: string
+        - name: qGateProjeId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/QGateProcessDto'
+  /api/services/app/reportSourceService/Test:
+    post:
+      tags:
+        - app_reportSourceService
+      operationId: app_reportSourceService_Test
+      consumes: []
+      produces: []
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/reportVariantService/Add:
+    post:
+      tags:
+        - app_reportVariantService
+      operationId: app_reportVariantService_Add
+      consumes: []
+      produces: []
+      parameters:
+        - name: reportVariantDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ReportVariantDto'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/reportVariantService/GetAllByUserId:
+    post:
+      tags:
+        - app_reportVariantService
+      operationId: app_reportVariantService_GetAllByUserId
+      consumes: []
+      produces: []
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          type: integer
+          format: int32
+        - name: ReportId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReportVariantDto'
+  /api/services/app/reportVariantService/GetById:
+    post:
+      tags:
+        - app_reportVariantService
+      operationId: app_reportVariantService_GetById
+      consumes: []
+      produces: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ReportVariantDto'
+  /api/services/app/reportVariantService/Create:
+    post:
+      tags:
+        - app_reportVariantService
+      operationId: app_reportVariantService_Create
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/reworkEntranceService/GetAll:
+    post:
+      tags:
+        - app_reworkEntranceService
+      operationId: app_reworkEntranceService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReworkEntranceDto'
+  /api/services/app/reworkEntranceService/GetReworkEntranceDetailsByProcessSummaryId:
+    post:
+      tags:
+        - app_reworkEntranceService
+      operationId: app_reworkEntranceService_GetReworkEntranceDetailsByProcessSummaryId
+      consumes: []
+      produces: []
+      parameters:
+        - name: processSummaryId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReworkEntranceLogDto'
+  /api/services/app/reworkEntranceService/NumberOfEntryReworkByShiftProcessId:
+    post:
+      tags:
+        - app_reworkEntranceService
+      operationId: app_reworkEntranceService_NumberOfEntryReworkByShiftProcessId
+      consumes: []
+      produces: []
+      parameters:
+        - name: shiftProcessId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            format: int32
+            type: integer
+  /api/services/app/reworkProcessService/GetAll:
+    post:
+      tags:
+        - app_reworkProcessService
+      operationId: app_reworkProcessService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReworkProcessDto'
+  /api/services/app/reworkProcessService/GetReworkProcessDetailsByReworkProcessId:
+    post:
+      tags:
+        - app_reworkProcessService
+      operationId: app_reworkProcessService_GetReworkProcessDetailsByReworkProcessId
+      consumes: []
+      produces: []
+      parameters:
+        - name: reworkProcessId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UsedMaterialOnRework'
+  /api/services/app/reworkProcessService/GetReworkProcessDetailsByWorkOrderId:
+    post:
+      tags:
+        - app_reworkProcessService
+      operationId: app_reworkProcessService_GetReworkProcessDetailsByWorkOrderId
+      consumes: []
+      produces: []
+      parameters:
+        - name: workOrderId
+          in: query
+          required: true
+          type: integer
+          format: int32
+        - name: hatId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReworkProcessDto'
+  /api/services/app/role/GetAllPermissions:
+    post:
+      tags:
+        - app_role
+      operationId: app_role_GetAllPermissions
+      consumes: []
+      produces: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListResultDto[PermissionDto]'
+  /api/services/app/role/Get:
+    post:
+      tags:
+        - app_role
+      operationId: app_role_Get
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/EntityDto[Int32]'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleDto'
+  /api/services/app/role/GetAll:
+    post:
+      tags:
+        - app_role
+      operationId: app_role_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PagedResultRequestDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PagedResultDto[RoleDto]'
+  /api/services/app/role/Create:
+    post:
+      tags:
+        - app_role
+      operationId: app_role_Create
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CreateRoleDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleDto'
+  /api/services/app/role/Update:
+    post:
+      tags:
+        - app_role
+      operationId: app_role_Update
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/RoleDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RoleDto'
+  /api/services/app/role/Delete:
+    post:
+      tags:
+        - app_role
+      operationId: app_role_Delete
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/EntityDto[Int32]'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/session/GetCurrentLoginInformations:
+    post:
+      tags:
+        - app_session
+      operationId: app_session_GetCurrentLoginInformations
+      consumes: []
+      produces: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetCurrentLoginInformationsOutput'
+  /api/services/app/shiftProcessService/GetAll:
+    post:
+      tags:
+        - app_shiftProcessService
+      operationId: app_shiftProcessService_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShiftProcessDto'
+  /api/services/app/shiftProcessService/GetById:
+    post:
+      tags:
+        - app_shiftProcessService
+      operationId: app_shiftProcessService_GetById
+      consumes: []
+      produces: []
+      parameters:
+        - name: shiftProcessId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ShiftProcessDto'
+  /api/services/app/shiftProcessService/GetLastShift:
+    post:
+      tags:
+        - app_shiftProcessService
+      operationId: app_shiftProcessService_GetLastShift
+      consumes: []
+      produces: []
+      parameters:
+        - name: lineId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ShiftProcessDto'
+  /api/services/app/shiftProcessService/UpdateShiftProcessNotes:
+    post:
+      tags:
+        - app_shiftProcessService
+      operationId: app_shiftProcessService_UpdateShiftProcessNotes
+      consumes: []
+      produces: []
+      parameters:
+        - name: shiftProcessDto
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ShiftProcessDto'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/shiftProcessService/UpdateEndOfShiftValues:
+    post:
+      tags:
+        - app_shiftProcessService
+      operationId: app_shiftProcessService_UpdateEndOfShiftValues
+      consumes: []
+      produces: []
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/shiftProcessService/GetAnalyticalBaseData:
+    post:
+      tags:
+        - app_shiftProcessService
+      operationId: app_shiftProcessService_GetAnalyticalBaseData
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ShiftProcessAnalyticalDto'
+  /api/services/app/shiftProcessService/GetAnalyticalPivotContext:
+    post:
+      tags:
+        - app_shiftProcessService
+      operationId: app_shiftProcessService_GetAnalyticalPivotContext
+      consumes: []
+      produces: []
+      parameters:
+        - name: queryFilter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryFilter'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PivotContext'
+  /api/services/app/shiftService/GetCurrentShift:
+    post:
+      tags:
+        - app_shiftService
+      operationId: app_shiftService_GetCurrentShift
+      consumes: []
+      produces: []
+      parameters:
+        - name: lineId
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ShiftDto'
+  /api/services/app/tenant/GetTenantById:
+    post:
+      tags:
+        - app_tenant
+      operationId: app_tenant_GetTenantById
+      consumes: []
+      produces: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Tenant'
+  /api/services/app/tenant/Get:
+    post:
+      tags:
+        - app_tenant
+      operationId: app_tenant_Get
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/EntityDto[Int32]'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantDto'
+  /api/services/app/tenant/GetAll:
+    post:
+      tags:
+        - app_tenant
+      operationId: app_tenant_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PagedResultRequestDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PagedResultDto[TenantDto]'
+  /api/services/app/tenant/Create:
+    post:
+      tags:
+        - app_tenant
+      operationId: app_tenant_Create
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CreateTenantDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantDto'
+  /api/services/app/tenant/Update:
+    post:
+      tags:
+        - app_tenant
+      operationId: app_tenant_Update
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/TenantDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TenantDto'
+  /api/services/app/tenant/Delete:
+    post:
+      tags:
+        - app_tenant
+      operationId: app_tenant_Delete
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/EntityDto[Int32]'
+      responses:
+        '204':
+          description: No Content
+  /api/services/app/user/GetRoles:
+    post:
+      tags:
+        - app_user
+      operationId: app_user_GetRoles
+      consumes: []
+      produces: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ListResultDto[RoleDto]'
+  /api/services/app/user/Get:
+    post:
+      tags:
+        - app_user
+      operationId: app_user_Get
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/EntityDto[Int64]'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UserDto'
+  /api/services/app/user/GetAll:
+    post:
+      tags:
+        - app_user
+      operationId: app_user_GetAll
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PagedResultRequestDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PagedResultDto[UserDto]'
+  /api/services/app/user/Create:
+    post:
+      tags:
+        - app_user
+      operationId: app_user_Create
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CreateUserDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UserDto'
+  /api/services/app/user/Update:
+    post:
+      tags:
+        - app_user
+      operationId: app_user_Update
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateUserDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UserDto'
+  /api/services/app/user/Delete:
+    post:
+      tags:
+        - app_user
+      operationId: app_user_Delete
+      consumes: []
+      produces: []
+      parameters:
+        - name: input
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/EntityDto[Int64]'
+      responses:
+        '204':
+          description: No Content
+  /api/TypeScript:
+    get:
+      tags:
+        - TypeScript
+      operationId: TypeScript_Get
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: isCompleteService
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+definitions:
+  ClearCacheModel:
+    type: object
+    properties:
+      password:
+        type: string
+      caches:
+        type: array
+        items:
+          type: string
+  AjaxResponse:
+    type: object
+    properties:
+      result:
+        type: object
+      targetUrl:
+        type: string
+      success:
+        type: boolean
+      error:
+        $ref: '#/definitions/ErrorInfo'
+      unAuthorizedRequest:
+        type: boolean
+      __abp:
+        type: boolean
+        readOnly: true
+  ErrorInfo:
+    type: object
+    properties:
+      code:
+        format: int32
+        type: integer
+      message:
+        type: string
+      details:
+        type: string
+      validationErrors:
+        type: array
+        items:
+          $ref: '#/definitions/ValidationErrorInfo'
+  ValidationErrorInfo:
+    type: object
+    properties:
+      message:
+        type: string
+      members:
+        type: array
+        items:
+          type: string
+  ClearAllCacheModel:
+    type: object
+    properties:
+      password:
+        type: string
+  LoginModel:
+    required:
+      - usernameOrEmailAddress
+      - password
+    type: object
+    properties:
+      tenancyName:
+        type: string
+      usernameOrEmailAddress:
+        type: string
+      password:
+        type: string
+  IsTenantAvailableInput:
+    required:
+      - tenancyName
+    type: object
+    properties:
+      tenancyName:
+        type: string
+  IsTenantAvailableOutput:
+    type: object
+    properties:
+      state:
+        format: int32
+        enum:
+          - 1
+          - 2
+          - 3
+        type: integer
+      tenantId:
+        format: int32
+        type: integer
+  RegisterInput:
+    required:
+      - name
+      - surname
+      - userName
+      - emailAddress
+      - password
+    type: object
+    properties:
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      surname:
+        maxLength: 32
+        minLength: 0
+        type: string
+      userName:
+        maxLength: 32
+        minLength: 0
+        type: string
+      emailAddress:
+        maxLength: 256
+        minLength: 0
+        type: string
+      password:
+        maxLength: 32
+        minLength: 0
+        type: string
+      captchaResponse:
+        type: string
+  RegisterOutput:
+    type: object
+    properties:
+      canLogin:
+        type: boolean
+  ChangeUiThemeInput:
+    required:
+      - theme
+    type: object
+    properties:
+      theme:
+        type: string
+  DepartmentDto:
+    type: object
+    properties:
+      number:
+        type: string
+      name:
+        type: string
+  LineDto:
+    type: object
+    properties:
+      lineId:
+        format: int32
+        type: integer
+      name:
+        type: string
+      qGateProjectId:
+        format: int32
+        type: integer
+      groupingConstant:
+        format: int32
+        type: integer
+  LossDefinitionDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      lossCode:
+        type: string
+      name:
+        type: string
+      isPlanned:
+        type: boolean
+      maintenanceNotificationNumberIsMandatory:
+        type: boolean
+      materialNumberIsMandatory:
+        type: boolean
+      lossCodeAndName:
+        type: string
+        readOnly: true
+  LossProcessDto:
+    required:
+      - lossCode
+      - duration
+      - numberOfPerson
+      - description
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      lineId:
+        format: int32
+        type: integer
+      shiftProcessId:
+        format: int32
+        type: integer
+      pauseProcessId:
+        format: int32
+        type: integer
+      maintenanceNotificationNumber:
+        format: int32
+        type: integer
+      materialNumber:
+        type: string
+      departmentNumber:
+        type: string
+      teamNo:
+        type: string
+      shiftNo:
+        format: int32
+        type: integer
+      teamName:
+        type: string
+      recordDateTime:
+        format: date-time
+        type: string
+      lossCode:
+        type: string
+      lossDefinitionName:
+        type: string
+      lossCodeAndName:
+        type: string
+        readOnly: true
+      totalLossTime:
+        format: double
+        type: number
+        readOnly: true
+      duration:
+        format: double
+        maximum: 430
+        type: number
+      numberOfPerson:
+        format: int32
+        maximum: 100
+        minimum: 1
+        type: integer
+      description:
+        type: string
+      percentage:
+        format: int32
+        type: integer
+      iconColorClassName:
+        type: string
+      isSendToSap:
+        type: boolean
+      sendSapDateTime:
+        format: date-time
+        type: string
+  QueryFilter:
+    type: object
+    properties:
+      sequnceNumber:
+        format: int32
+        type: integer
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      lineId:
+        format: int32
+        type: integer
+      shiftProcessId:
+        format: int32
+        type: integer
+      selectedLineIds:
+        type: array
+        items:
+          format: int32
+          type: integer
+      dimensionsForAnalytical:
+        type: array
+        items:
+          type: string
+      columnsForAnalytical:
+        type: array
+        items:
+          type: string
+      rowsForAnalytical:
+        type: array
+        items:
+          type: string
+      groupingConstant:
+        format: int32
+        type: integer
+      reportVariantDto:
+        $ref: '#/definitions/ReportVariantDto'
+  ReportVariantDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      mesUserId:
+        format: int32
+        type: integer
+      reportId:
+        format: int32
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      queryObject:
+        format: byte
+        type: string
+      isPublic:
+        type: boolean
+      isTimeIncluded:
+        type: boolean
+      controllerName:
+        type: string
+      actionName:
+        type: string
+  LossProcessAnalyticalDto:
+    type: object
+    properties:
+      lineName:
+        type: string
+      shiftName:
+        type: string
+      teamName:
+        type: string
+      lossCode:
+        type: string
+      lossDefinitionName:
+        type: string
+      lossCodeAndName:
+        type: string
+        readOnly: true
+      totalLossTime:
+        format: double
+        type: number
+        readOnly: true
+      percentage:
+        format: double
+        type: number
+        readOnly: true
+      duration:
+        format: double
+        type: number
+      recordDateTime:
+        format: date-time
+        type: string
+      numberOfPerson:
+        format: int32
+        type: integer
+      year:
+        format: int32
+        type: integer
+        readOnly: true
+      month:
+        format: int32
+        type: integer
+        readOnly: true
+      dayOfMonth:
+        format: int32
+        type: integer
+        readOnly: true
+      weekOfMonth:
+        format: int32
+        type: integer
+        readOnly: true
+      weekOfYear:
+        format: int32
+        type: integer
+        readOnly: true
+  PivotContext:
+    type: object
+    properties:
+      pivotTableHtml:
+        type: string
+      pivotTableJson:
+        type: string
+  DrillDownQueryFilter:
+    type: object
+    properties:
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      filters:
+        type: array
+        items:
+          $ref: '#/definitions/DrillDownQueryItem'
+  DrillDownQueryItem:
+    type: object
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+  MailAddress:
+    type: object
+    properties:
+      displayName:
+        type: string
+        readOnly: true
+      user:
+        type: string
+        readOnly: true
+      host:
+        type: string
+        readOnly: true
+      address:
+        type: string
+        readOnly: true
+  MatchRecordDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      creationTime:
+        format: date-time
+        type: string
+      serialNumber:
+        type: string
+      materialNumber:
+        type: string
+      quantity:
+        format: int32
+        type: integer
+      isConfirmedToSap:
+        type: boolean
+      sapConfirmationTime:
+        format: date-time
+        type: string
+      sapSerialNumber:
+        type: string
+  MatchRecordDetailDto:
+    type: object
+    properties:
+      serialNumber:
+        type: string
+  MaterialDto:
+    type: object
+    properties:
+      materialNumber:
+        type: string
+      name:
+        type: string
+  MesClientDataDto:
+    type: object
+    properties:
+      workOrderNo:
+        type: string
+      operatorDto:
+        $ref: '#/definitions/OperatorDtoTest'
+      machineDto:
+        $ref: '#/definitions/MachineDto'
+      oeeDto:
+        $ref: '#/definitions/OeeDto'
+      productionDtos:
+        type: array
+        items:
+          $ref: '#/definitions/ProductionDtoTest'
+      pauseDtos:
+        type: array
+        items:
+          $ref: '#/definitions/PauseDtoTest'
+  OperatorDtoTest:
+    type: object
+    properties:
+      personnelNumber:
+        type: string
+      personnelName:
+        type: string
+      image:
+        format: byte
+        type: string
+  MachineDto:
+    type: object
+    properties:
+      name:
+        type: string
+      status:
+        type: string
+  OeeDto:
+    type: object
+    properties:
+      oee:
+        format: int32
+        type: integer
+      availability:
+        format: int32
+        type: integer
+      performance:
+        format: int32
+        type: integer
+      quality:
+        format: int32
+        type: integer
+  ProductionDtoTest:
+    type: object
+    properties:
+      materialNumber:
+        type: string
+      materialName:
+        type: string
+      noOfTarget:
+        format: int32
+        type: integer
+      noOfProduced:
+        format: int32
+        type: integer
+      noOfScrap:
+        format: int32
+        type: integer
+      noOfNetProduced:
+        format: int32
+        type: integer
+        readOnly: true
+  PauseDtoTest:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      pauseCode:
+        type: string
+      description:
+        type: string
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      duration:
+        type: string
+        readOnly: true
+  OperationProcessDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      name:
+        type: string
+      operationTypeId:
+        format: int32
+        type: integer
+      description:
+        type: string
+      value:
+        type: string
+      isActive:
+        type: boolean
+      recordDateTime:
+        format: date-time
+        type: string
+      stationName:
+        type: string
+  OperatorDto:
+    type: object
+    properties:
+      personnelNumber:
+        type: string
+      personnelName:
+        type: string
+      stationName:
+        type: string
+      image:
+        format: byte
+        type: string
+  PauseDetailDescriptionDto:
+    required:
+      - code
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      pauseId:
+        format: int32
+        type: integer
+      code:
+        type: string
+      recordDateTime:
+        format: date-time
+        type: string
+      description:
+        type: string
+      numberOfOperator:
+        format: int32
+        type: integer
+  PauseProcessDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      shiftProcessId:
+        format: int32
+        type: integer
+      shiftOperatorListId:
+        format: int32
+        type: integer
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      isSavedAsLoss:
+        type: boolean
+      lineSectionName:
+        type: string
+      hasStationDetailRecord:
+        type: boolean
+      getDurationInMinute:
+        format: double
+        type: number
+        readOnly: true
+      getDurationInTimeSpanString:
+        type: string
+        readOnly: true
+  PauseProcessDetailDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      stationName:
+        type: string
+      beginDateTime:
+        type: string
+      endDateTime:
+        type: string
+      duration:
+        type: string
+  PauseDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      stationName:
+        type: string
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      durationOfPause:
+        type: string
+      personnelNumber:
+        type: string
+      personnelName:
+        type: string
+      materialNumber:
+        type: string
+  PivotTableHtmlWriter:
+    type: object
+    properties:
+      columnHeaderClass:
+        type: string
+      rowHeaderClass:
+        type: string
+      measureHeaderClass:
+        type: string
+      tableClass:
+        type: string
+      formatKey:
+        type: object
+      formatValue:
+        type: object
+      formatMeasureHeader:
+        type: object
+      formatDimensionLabel:
+        type: object
+      renderSortIndexAttr:
+        type: boolean
+      renderKeyIndexAttr:
+        type: boolean
+      renderValueIndexAttr:
+        type: boolean
+      renderDimensionLabel:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+        type: integer
+      renderTheadTbody:
+        type: boolean
+      subtotalRows:
+        type: boolean
+      subtotalColumns:
+        type: boolean
+      subtotalDimensions:
+        type: array
+        items:
+          type: string
+      repeatKeysInGroups:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+        type: integer
+      repeatDuplicateKeysAcrossDimensions:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+        type: integer
+      allowHtml:
+        type: boolean
+      subtotalKeySuffix:
+        type: string
+      totalsRowHeaderText:
+        type: string
+      totalsColumnHeaderText:
+        type: string
+      totalsRow:
+        type: boolean
+      totalsColumn:
+        type: boolean
+      grandTotal:
+        type: boolean
+  ProductionReportDto:
+    type: object
+    properties:
+      productionProcessId:
+        format: int32
+        type: integer
+      sequnceNumber:
+        format: int32
+        type: integer
+      materialNumber:
+        type: string
+      materialName:
+        type: string
+      productionTime:
+        type: string
+      workOrderId:
+        format: int32
+        type: integer
+      isCompleted:
+        type: boolean
+      shiftProcessId:
+        format: int32
+        type: integer
+      jitSerialNumber:
+        type: string
+      isReworked:
+        type: boolean
+      isSentSapConfirmation:
+        type: boolean
+      cancelationReason:
+        type: string
+      isActive:
+        type: boolean
+      matchRecordSerialNumber:
+        type: string
+      customerOrderCrationTime:
+        format: date-time
+        type: string
+      lineWorkOrderCrationTime:
+        format: date-time
+        type: string
+      startTime:
+        format: date-time
+        type: string
+      productionEndTime:
+        format: date-time
+        type: string
+      timeToPutShippingContainer:
+        format: date-time
+        type: string
+      className:
+        type: string
+      operatorWorkingHoursDtos:
+        type: array
+        items:
+          $ref: '#/definitions/OperatorWorkingHoursDto'
+      operationProcessDtos:
+        type: array
+        items:
+          $ref: '#/definitions/OperationProcessDto'
+      qGateProcessDtos:
+        type: array
+        items:
+          $ref: '#/definitions/QGateProcessDto'
+      reworkProcessDtos:
+        type: array
+        items:
+          $ref: '#/definitions/ReworkProcessDto'
+      reworkEntranceLogDtos:
+        type: array
+        items:
+          $ref: '#/definitions/ReworkEntranceLogDto'
+      productPhotoDtos:
+        type: array
+        items:
+          $ref: '#/definitions/ProductPhotoDto'
+      productionTimeLineItems:
+        type: array
+        items:
+          $ref: '#/definitions/ProductionTimeLineItem'
+  OperatorWorkingHoursDto:
+    required:
+      - description
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      personnelNumber:
+        type: string
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      shiftProcessId:
+        format: int32
+        type: integer
+      shiftDefinitionId:
+        format: int32
+        type: integer
+      shiftDefinitonBeginTime:
+        type: string
+      shiftDefinitonEndTime:
+        type: string
+      description:
+        type: string
+      netWorkingTime:
+        format: double
+        type: number
+        readOnly: true
+      getDurationWithSheculedDownTimesInTimeSpanString:
+        type: string
+        readOnly: true
+      breaksTimes:
+        format: double
+        type: number
+      netWorkingTimeAsTimeSpan:
+        type: string
+        readOnly: true
+      operatorDto:
+        $ref: '#/definitions/OperatorDto'
+  QGateProcessDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      defectCode:
+        type: string
+      defectName:
+        type: string
+      description:
+        type: string
+      defectSourceId:
+        format: int32
+        type: integer
+      defectSourceCode:
+        type: string
+      defectSourceDescription:
+        type: string
+  ReworkProcessDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      workOrderId:
+        format: int32
+        type: integer
+      stockCode:
+        type: string
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      usedMaterialOnReworks:
+        type: array
+        items:
+          $ref: '#/definitions/UsedMaterialOnRework'
+  ReworkEntranceLogDto:
+    type: object
+    properties:
+      recordDateTime:
+        format: date-time
+        type: string
+      logText:
+        type: string
+  ProductPhotoDto:
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      workOrderId:
+        format: int32
+        type: integer
+      kameraProgramName:
+        type: string
+      filePath:
+        type: string
+      resultType:
+        type: string
+  ProductionTimeLineItem:
+    type: object
+    properties:
+      recordTime:
+        format: date-time
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      timeNote:
+        type: string
+      iconClassName:
+        type: string
+  UsedMaterialOnRework:
+    type: object
+    properties:
+      materialNumber:
+        type: string
+      quantity:
+        format: int32
+        type: integer
+  ProductionDto:
+    type: object
+    properties:
+      numberOfProduction:
+        format: int32
+        type: integer
+      numberOfTobeProducedOrders:
+        format: int32
+        type: integer
+      shiftTarget:
+        format: int32
+        type: integer
+      numberOfShiftOrders:
+        format: int32
+        type: integer
+      realizationPercent:
+        format: int32
+        type: integer
+      shiftTimeElapsedPercent:
+        format: int32
+        type: integer
+      localAverageLineSpeed:
+        format: int32
+        type: integer
+      customerAverageLineSpeed:
+        format: int32
+        type: integer
+      operatorsWorkingTime:
+        format: double
+        type: number
+      lossProcessTime:
+        format: double
+        type: number
+      unexplainedTime:
+        format: double
+        type: number
+      performance:
+        format: double
+        type: number
+      performanceWithOutLose:
+        format: double
+        type: number
+      performanceWithLossOfLineBalance:
+        format: double
+        type: number
+      targetProductionTime:
+        format: double
+        type: number
+      lossOfLineBalanceTime:
+        format: double
+        type: number
+  HourlyFiguresDto:
+    type: object
+    properties:
+      numberOfProduction:
+        format: int32
+        type: integer
+      numberOfWorkOrder:
+        format: int32
+        type: integer
+      chartTimeLabel:
+        type: string
+      hourlyTarget:
+        format: int32
+        type: integer
+  ProductionSummaryDto:
+    type: object
+    properties:
+      numberOfProduction:
+        format: int32
+        type: integer
+      targetProductionTime:
+        format: double
+        type: number
+      lossOfLineBalanceTime:
+        format: double
+        type: number
+  ReworkEntranceDto:
+    type: object
+    properties:
+      workOrderId:
+        format: int32
+        type: integer
+      processSummaryId:
+        format: int32
+        type: integer
+      sequenceNumber:
+        type: string
+      stockCode:
+        type: string
+      stockName:
+        type: string
+      numberOfEntryRework:
+        format: int32
+        type: integer
+      shiftProcessId:
+        format: int32
+        type: integer
+      isActive:
+        type: boolean
+      logText:
+        type: string
+  'ListResultDto[PermissionDto]':
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/PermissionDto'
+  PermissionDto:
+    type: object
+    properties:
+      name:
+        type: string
+      displayName:
+        type: string
+      description:
+        type: string
+      id:
+        format: int64
+        type: integer
+  'EntityDto[Int32]':
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+  RoleDto:
+    required:
+      - name
+      - displayName
+    type: object
+    properties:
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      displayName:
+        maxLength: 64
+        minLength: 0
+        type: string
+      description:
+        maxLength: 5000
+        minLength: 0
+        type: string
+      isStatic:
+        type: boolean
+      permissions:
+        type: array
+        items:
+          type: string
+      id:
+        format: int32
+        type: integer
+  PagedResultRequestDto:
+    type: object
+    properties:
+      skipCount:
+        format: int32
+        maximum: 2147483647
+        minimum: 0
+        type: integer
+      maxResultCount:
+        format: int32
+        maximum: 2147483647
+        minimum: 1
+        type: integer
+  'PagedResultDto[RoleDto]':
+    type: object
+    properties:
+      totalCount:
+        format: int32
+        type: integer
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/RoleDto'
+  CreateRoleDto:
+    required:
+      - name
+      - displayName
+    type: object
+    properties:
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      displayName:
+        maxLength: 64
+        minLength: 0
+        type: string
+      normalizedName:
+        type: string
+      description:
+        maxLength: 5000
+        minLength: 0
+        type: string
+      isStatic:
+        type: boolean
+      permissions:
+        type: array
+        items:
+          type: string
+  GetCurrentLoginInformationsOutput:
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/UserLoginInfoDto'
+      tenant:
+        $ref: '#/definitions/TenantLoginInfoDto'
+  UserLoginInfoDto:
+    type: object
+    properties:
+      name:
+        type: string
+      surname:
+        type: string
+      userName:
+        type: string
+      emailAddress:
+        type: string
+      id:
+        format: int64
+        type: integer
+  TenantLoginInfoDto:
+    type: object
+    properties:
+      tenancyName:
+        type: string
+      name:
+        type: string
+      id:
+        format: int32
+        type: integer
+  ShiftProcessDto:
+    required:
+      - notes
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      shiftName:
+        type: string
+      teamName:
+        type: string
+      lineName:
+        type: string
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      lineId:
+        format: int32
+        type: integer
+      shiftDefinitionId:
+        format: int32
+        type: integer
+      teamId:
+        format: int32
+        type: integer
+      lossOfLineBalanceRate:
+        format: double
+        type: number
+      durationOfShift:
+        type: string
+      durationOfShiftInMinute:
+        format: double
+        type: number
+      notes:
+        type: string
+      performance:
+        format: double
+        type: number
+      performanceWithLossOfLineBalance:
+        format: double
+        type: number
+  ShiftProcessAnalyticalDto:
+    type: object
+    properties:
+      lineName:
+        type: string
+      shiftName:
+        type: string
+      teamName:
+        type: string
+      performance:
+        format: double
+        type: number
+      performanceWithLossOfLineBalance:
+        format: double
+        type: number
+      recordDateTime:
+        format: date-time
+        type: string
+      year:
+        format: int32
+        type: integer
+        readOnly: true
+      month:
+        format: int32
+        type: integer
+        readOnly: true
+      dayOfMonth:
+        format: int32
+        type: integer
+        readOnly: true
+      week:
+        format: int32
+        type: integer
+        readOnly: true
+      weekOfYear:
+        format: int32
+        type: integer
+        readOnly: true
+  ShiftDto:
+    type: object
+    properties:
+      beginDateTime:
+        format: date-time
+        type: string
+      endDateTime:
+        format: date-time
+        type: string
+      shiftTarget:
+        format: int32
+        type: integer
+      shiftTimeElapsedPercent:
+        format: int32
+        type: integer
+  Tenant:
+    required:
+      - tenancyName
+      - name
+    type: object
+    properties:
+      plantCode:
+        type: string
+      dbHelperConStr:
+        type: string
+      kameraKontolGoruntuFolder:
+        type: string
+      edition:
+        $ref: '#/definitions/Edition'
+      editionId:
+        format: int32
+        type: integer
+      creatorUser:
+        $ref: '#/definitions/User'
+      lastModifierUser:
+        $ref: '#/definitions/User'
+      deleterUser:
+        $ref: '#/definitions/User'
+      tenancyName:
+        maxLength: 64
+        minLength: 0
+        type: string
+      name:
+        maxLength: 128
+        minLength: 0
+        type: string
+      connectionString:
+        maxLength: 1024
+        minLength: 0
+        type: string
+      isActive:
+        type: boolean
+      isDeleted:
+        type: boolean
+      deleterUserId:
+        format: int64
+        type: integer
+      deletionTime:
+        format: date-time
+        type: string
+      lastModificationTime:
+        format: date-time
+        type: string
+      lastModifierUserId:
+        format: int64
+        type: integer
+      creationTime:
+        format: date-time
+        type: string
+      creatorUserId:
+        format: int64
+        type: integer
+      id:
+        format: int32
+        type: integer
+  Edition:
+    required:
+      - name
+      - displayName
+    type: object
+    properties:
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      displayName:
+        maxLength: 64
+        minLength: 0
+        type: string
+      isDeleted:
+        type: boolean
+      deleterUserId:
+        format: int64
+        type: integer
+      deletionTime:
+        format: date-time
+        type: string
+      lastModificationTime:
+        format: date-time
+        type: string
+      lastModifierUserId:
+        format: int64
+        type: integer
+      creationTime:
+        format: date-time
+        type: string
+      creatorUserId:
+        format: int64
+        type: integer
+      id:
+        format: int32
+        type: integer
+  User:
+    required:
+      - userName
+      - emailAddress
+      - name
+      - surname
+      - password
+    type: object
+    properties:
+      deleterUser:
+        $ref: '#/definitions/User'
+      creatorUser:
+        $ref: '#/definitions/User'
+      lastModifierUser:
+        $ref: '#/definitions/User'
+      authenticationSource:
+        type: string
+      userName:
+        maxLength: 32
+        minLength: 0
+        type: string
+      tenantId:
+        format: int32
+        type: integer
+      emailAddress:
+        maxLength: 256
+        minLength: 0
+        type: string
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      surname:
+        maxLength: 32
+        minLength: 0
+        type: string
+      fullName:
+        type: string
+        readOnly: true
+      password:
+        maxLength: 128
+        minLength: 0
+        type: string
+      emailConfirmationCode:
+        maxLength: 328
+        minLength: 0
+        type: string
+      passwordResetCode:
+        maxLength: 328
+        minLength: 0
+        type: string
+      lockoutEndDateUtc:
+        format: date-time
+        type: string
+      accessFailedCount:
+        format: int32
+        type: integer
+      isLockoutEnabled:
+        type: boolean
+      phoneNumber:
+        type: string
+      isPhoneNumberConfirmed:
+        type: boolean
+      securityStamp:
+        type: string
+      isTwoFactorEnabled:
+        type: boolean
+      logins:
+        type: array
+        items:
+          $ref: '#/definitions/UserLogin'
+      roles:
+        type: array
+        items:
+          $ref: '#/definitions/UserRole'
+      claims:
+        type: array
+        items:
+          $ref: '#/definitions/UserClaim'
+      permissions:
+        type: array
+        items:
+          $ref: '#/definitions/UserPermissionSetting'
+      settings:
+        type: array
+        items:
+          $ref: '#/definitions/Setting'
+      isEmailConfirmed:
+        type: boolean
+      isActive:
+        type: boolean
+      lastLoginTime:
+        format: date-time
+        type: string
+      isDeleted:
+        type: boolean
+      deleterUserId:
+        format: int64
+        type: integer
+      deletionTime:
+        format: date-time
+        type: string
+      lastModificationTime:
+        format: date-time
+        type: string
+      lastModifierUserId:
+        format: int64
+        type: integer
+      creationTime:
+        format: date-time
+        type: string
+      creatorUserId:
+        format: int64
+        type: integer
+      id:
+        format: int64
+        type: integer
+  UserLogin:
+    required:
+      - loginProvider
+      - providerKey
+    type: object
+    properties:
+      tenantId:
+        format: int32
+        type: integer
+      userId:
+        format: int64
+        type: integer
+      loginProvider:
+        type: string
+      providerKey:
+        type: string
+      id:
+        format: int64
+        type: integer
+  UserRole:
+    type: object
+    properties:
+      tenantId:
+        format: int32
+        type: integer
+      userId:
+        format: int64
+        type: integer
+      roleId:
+        format: int32
+        type: integer
+      creationTime:
+        format: date-time
+        type: string
+      creatorUserId:
+        format: int64
+        type: integer
+      id:
+        format: int64
+        type: integer
+  UserClaim:
+    type: object
+    properties:
+      tenantId:
+        format: int32
+        type: integer
+      userId:
+        format: int64
+        type: integer
+      claimType:
+        type: string
+      claimValue:
+        type: string
+      creationTime:
+        format: date-time
+        type: string
+      creatorUserId:
+        format: int64
+        type: integer
+      id:
+        format: int64
+        type: integer
+  UserPermissionSetting:
+    required:
+      - name
+    type: object
+    properties:
+      userId:
+        format: int64
+        type: integer
+      tenantId:
+        format: int32
+        type: integer
+      name:
+        type: string
+      isGranted:
+        type: boolean
+      creationTime:
+        format: date-time
+        type: string
+      creatorUserId:
+        format: int64
+        type: integer
+      id:
+        format: int64
+        type: integer
+  Setting:
+    required:
+      - name
+    type: object
+    properties:
+      tenantId:
+        format: int32
+        type: integer
+      userId:
+        format: int64
+        type: integer
+      name:
+        type: string
+      value:
+        type: string
+      lastModificationTime:
+        format: date-time
+        type: string
+      lastModifierUserId:
+        format: int64
+        type: integer
+      creationTime:
+        format: date-time
+        type: string
+      creatorUserId:
+        format: int64
+        type: integer
+      id:
+        format: int64
+        type: integer
+  TenantDto:
+    required:
+      - tenancyName
+      - name
+    type: object
+    properties:
+      tenancyName:
+        maxLength: 64
+        minLength: 0
+        pattern: '^[a-zA-Z][a-zA-Z0-9_-]{1,}$'
+        type: string
+      name:
+        maxLength: 128
+        minLength: 0
+        type: string
+      isActive:
+        type: boolean
+      id:
+        format: int32
+        type: integer
+  'PagedResultDto[TenantDto]':
+    type: object
+    properties:
+      totalCount:
+        format: int32
+        type: integer
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/TenantDto'
+  CreateTenantDto:
+    required:
+      - tenancyName
+      - name
+      - adminEmailAddress
+    type: object
+    properties:
+      tenancyName:
+        maxLength: 64
+        minLength: 0
+        pattern: '^[a-zA-Z][a-zA-Z0-9_-]{1,}$'
+        type: string
+      name:
+        maxLength: 128
+        minLength: 0
+        type: string
+      adminEmailAddress:
+        maxLength: 256
+        minLength: 0
+        type: string
+      connectionString:
+        type: string
+      isActive:
+        type: boolean
+  'ListResultDto[RoleDto]':
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/RoleDto'
+  'EntityDto[Int64]':
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+  UserDto:
+    required:
+      - userName
+      - name
+      - surname
+      - emailAddress
+    type: object
+    properties:
+      userName:
+        maxLength: 32
+        minLength: 0
+        type: string
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      surname:
+        maxLength: 32
+        minLength: 0
+        type: string
+      emailAddress:
+        maxLength: 256
+        minLength: 0
+        type: string
+      isActive:
+        type: boolean
+      fullName:
+        type: string
+      lastLoginTime:
+        format: date-time
+        type: string
+      creationTime:
+        format: date-time
+        type: string
+      roles:
+        type: array
+        items:
+          type: string
+      id:
+        format: int64
+        type: integer
+  'PagedResultDto[UserDto]':
+    type: object
+    properties:
+      totalCount:
+        format: int32
+        type: integer
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/UserDto'
+  CreateUserDto:
+    required:
+      - userName
+      - name
+      - surname
+      - emailAddress
+      - password
+    type: object
+    properties:
+      userName:
+        maxLength: 32
+        minLength: 0
+        type: string
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      surname:
+        maxLength: 32
+        minLength: 0
+        type: string
+      emailAddress:
+        maxLength: 256
+        minLength: 0
+        type: string
+      isActive:
+        type: boolean
+      roleNames:
+        type: array
+        items:
+          type: string
+      password:
+        maxLength: 32
+        minLength: 0
+        type: string
+  UpdateUserDto:
+    required:
+      - userName
+      - name
+      - surname
+      - emailAddress
+    type: object
+    properties:
+      userName:
+        maxLength: 32
+        minLength: 0
+        type: string
+      name:
+        maxLength: 32
+        minLength: 0
+        type: string
+      surname:
+        maxLength: 32
+        minLength: 0
+        type: string
+      emailAddress:
+        maxLength: 256
+        minLength: 0
+        type: string
+      isActive:
+        type: boolean
+      roleNames:
+        type: array
+        items:
+          type: string
+      id:
+        format: int64
+        type: integer
